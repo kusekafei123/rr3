@@ -12,9 +12,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-    static {
-        System.out.println(1);
-    }
+
+
     @Autowired
     private ProductService productService;
     @RequestMapping("/findAll.do")
@@ -24,5 +23,10 @@ public class ProductController {
         mv.addObject("productList",list);
         mv.setViewName("product-list");
         return mv;
+    }
+    @RequestMapping("/save.do")
+    public String save(Product product){
+        productService.save(product);
+        return "redirect:findAll.do";
     }
 }
